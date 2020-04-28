@@ -10,7 +10,8 @@ namespace ConsoleApp
         private static FileSystemContext _context = new FileSystemContext();
         static void Main(string[] args)
         {
-            AddDirectory();
+            ProgramExecuter pe = new ProgramExecuter();
+            pe.Run();
             GetDirectories("After Add: ");
         }
 
@@ -22,13 +23,6 @@ namespace ConsoleApp
             {
                 Console.WriteLine(directory.Name);
             }
-        }
-
-        private static void AddDirectory()
-        {
-            var directory = new Directory { Name = "NewFolder" };
-            _context.Directories.Add(directory);
-            _context.SaveChanges();
         }
     }
 }

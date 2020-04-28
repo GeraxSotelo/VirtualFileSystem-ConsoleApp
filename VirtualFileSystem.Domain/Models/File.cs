@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VirtualFileSystem.Domain.Models.Interfaces;
+using VirtualFileSystem.Domain.Interfaces;
 
 namespace VirtualFileSystem.Domain
 {
@@ -9,6 +9,6 @@ namespace VirtualFileSystem.Domain
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int ParentDirectoryId { get; set; }
+        public int DirectoryId { get; set; }
     }
 }

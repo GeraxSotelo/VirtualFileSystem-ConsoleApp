@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using VirtualFileSystem.Domain;
+using VirtualFileSystem.Domain.Models;
 
 namespace VirtualFileSystem.Data
 {
@@ -14,6 +15,11 @@ namespace VirtualFileSystem.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging().UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = VirtualFileSystemData");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<RootDirectory>().ToTable("RootDirectory");
         }
     }
 }

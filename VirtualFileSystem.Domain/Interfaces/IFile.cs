@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VirtualFileSystem.Domain.Models.Interfaces
+namespace VirtualFileSystem.Domain.Interfaces
 {
     interface IFile
     {
         int Id { get; set; }
         string Name { get; set; }
-        int ParentDirectoryId { get; set; }
+        int DirectoryId { get; set; }
     }
 }

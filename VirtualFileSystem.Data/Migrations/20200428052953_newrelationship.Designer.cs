@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VirtualFileSystem.Data;
 
 namespace VirtualFileSystem.Data.Migrations
 {
     [DbContext(typeof(FileSystemContext))]
-    partial class FileSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20200428052953_newrelationship")]
+    partial class newrelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,9 +34,14 @@ namespace VirtualFileSystem.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RootDirectoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DirectoryId");
+
+                    b.HasIndex("RootDirectoryId");
 
                     b.ToTable("Directories");
                 });
@@ -52,9 +59,14 @@ namespace VirtualFileSystem.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RootDirectoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("DirectoryId");
+
+                    b.HasIndex("RootDirectoryId");
 
                     b.ToTable("Files");
                 });
@@ -81,6 +93,10 @@ namespace VirtualFileSystem.Data.Migrations
                         .HasForeignKey("DirectoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("VirtualFileSystem.Domain.Models.RootDirectory", null)
+                        .WithMany("Directories")
+                        .HasForeignKey("RootDirectoryId");
                 });
 
             modelBuilder.Entity("VirtualFileSystem.Domain.File", b =>
@@ -90,6 +106,10 @@ namespace VirtualFileSystem.Data.Migrations
                         .HasForeignKey("DirectoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("VirtualFileSystem.Domain.Models.RootDirectory", null)
+                        .WithMany("Files")
+                        .HasForeignKey("RootDirectoryId");
                 });
 #pragma warning restore 612, 618
         }

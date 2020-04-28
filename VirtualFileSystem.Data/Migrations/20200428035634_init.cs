@@ -13,8 +13,7 @@ namespace VirtualFileSystem.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    ParentDirectoryId = table.Column<int>(nullable: false),
-                    DirectoryId = table.Column<int>(nullable: true)
+                    DirectoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,7 +23,7 @@ namespace VirtualFileSystem.Data.Migrations
                         column: x => x.DirectoryId,
                         principalTable: "Directories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,8 +33,7 @@ namespace VirtualFileSystem.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    ParentDirectoryId = table.Column<int>(nullable: false),
-                    DirectoryId = table.Column<int>(nullable: true)
+                    DirectoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +43,7 @@ namespace VirtualFileSystem.Data.Migrations
                         column: x => x.DirectoryId,
                         principalTable: "Directories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

@@ -8,11 +8,9 @@ using Microsoft.Extensions.Configuration;
 //using Microsoft.AspNetCore.Hosting;
 //using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using VirtualFileSystem.Domain.Services;
-using VirtualFileSystem.Domain.Services.Interfaces;
 //using Microsoft.Extensions.Hosting;
 
-namespace VirtualFileSystem.Domain
+namespace ConsoleApp
 {
     class Startup
     {
@@ -26,13 +24,15 @@ namespace VirtualFileSystem.Domain
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IDirectoryService, DirectoryService>();
+            services.AddTransient<DirectoryController>();
+            services.AddTransient<DirectoryService>();
+            services.AddTransient<DirectoryRepository>();
         }
 
         //Autofac
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterType<DirectoryService>().As<IDirectoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<DirectoryService>().InstancePerLifetimeScope();
         }
 
 
