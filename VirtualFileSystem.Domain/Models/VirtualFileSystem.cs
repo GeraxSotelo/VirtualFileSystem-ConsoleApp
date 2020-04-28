@@ -5,12 +5,12 @@ using VirtualFileSystem.Domain.Interfaces;
 
 namespace VirtualFileSystem.Domain.Models
 {
-    class VirtualFileSystem
+    public class FileSystem
     {
-        public RootDirectory Root { get; set; }
+        public Directory Root { get; set; }
         public IDirectory CurrentDirectory { get; set; }
 
-        public VirtualFileSystem(RootDirectory root)
+        public FileSystem(Directory root)
         {
             Root = root;
             Setup();

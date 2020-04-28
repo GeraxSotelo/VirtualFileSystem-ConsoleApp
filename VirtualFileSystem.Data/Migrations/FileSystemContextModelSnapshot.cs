@@ -26,7 +26,7 @@ namespace VirtualFileSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DirectoryId")
+                    b.Property<int?>("DirectoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -59,28 +59,11 @@ namespace VirtualFileSystem.Data.Migrations
                     b.ToTable("Files");
                 });
 
-            modelBuilder.Entity("VirtualFileSystem.Domain.Models.RootDirectory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RootDirectory");
-                });
-
             modelBuilder.Entity("VirtualFileSystem.Domain.Directory", b =>
                 {
                     b.HasOne("VirtualFileSystem.Domain.Directory", null)
                         .WithMany("Directories")
-                        .HasForeignKey("DirectoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DirectoryId");
                 });
 
             modelBuilder.Entity("VirtualFileSystem.Domain.File", b =>

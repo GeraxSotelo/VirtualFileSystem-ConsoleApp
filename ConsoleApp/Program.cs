@@ -12,12 +12,12 @@ namespace ConsoleApp
         {
             ProgramExecuter pe = new ProgramExecuter();
             pe.Run();
-            GetDirectories("After Add: ");
+            //GetDirectories("After Add: ");
         }
 
         private static void GetDirectories(string text)
         {
-            var directories = _context.Directories.ToList();
+            var directories = _context.Directories.ToList(); //failing. looking for rootdirectory column
             Console.WriteLine($"{text}: Directory count is {directories.Count}");
             foreach (var directory in directories)
             {

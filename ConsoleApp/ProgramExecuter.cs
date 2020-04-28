@@ -1,4 +1,5 @@
 ﻿using System;
+using VirtualFileSystem.Domain;
 using VirtualFileSystem.Domain.Models;
 
 namespace ConsoleApp
@@ -6,20 +7,18 @@ namespace ConsoleApp
     class ProgramExecuter
     {
         private bool _running = true;
-        private RootDirectory _root;
+        private Directory _root;
         private CommandParser _cp = new CommandParser();
-        private DirectoryController _dc;
+        private readonly DirectoryController _dc = new DirectoryController();
+        private readonly FileSystem _vfs;
 
         public ProgramExecuter()
         {
-        }
-        public ProgramExecuter(DirectoryController dc)
-        {
             _root = GetRootDirectory();
-            _dc = dc;
+            _vfs = new FileSystem(_root);
         }
 
-        private RootDirectory GetRootDirectory()
+        private Directory GetRootDirectory()
         {
             return _dc.GetRootDirectory();
         }
@@ -29,6 +28,7 @@ namespace ConsoleApp
             while (_running)
             {
                 Console.WriteLine("\nType a command. 'help' for information. 'q' or 'e' to exit.\n");
+                Console.Write($"{_vfs.CurrentDirectory.Name}: $ ");
                 GetUserInput();
             }
         }
@@ -41,7 +41,8 @@ namespace ConsoleApp
 
         private UserInput AnalyzeInput(string input)
         {
-            UserInput parsedInput = _cp.ParseInput(input);
+            UserInput parsedInput = new UserInput();
+            parsedInput = _cp.ParseInput(input);
 
             switch(parsedInput.Command)
             {
@@ -50,7 +51,7 @@ namespace ConsoleApp
                     _running = false;
                     break;
                 case "mkdir":
-                    _dc.Mkdir(parsedInput.Option, 5);
+                    _dc.Mkdir(parsedInput.Option, _vfs.CurrentDirectory.Id);
                     break;
                 default:
                     parsedInput.Command = "Invalid input";

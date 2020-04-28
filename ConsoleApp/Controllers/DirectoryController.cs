@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VirtualFileSystem.Domain.Models;
+using VirtualFileSystem.Domain;
+
 
 namespace ConsoleApp
 {
     class DirectoryController
     {
-        private readonly DirectoryService _ds;
+        private readonly DirectoryService _ds = new DirectoryService();
 
-        public DirectoryController(DirectoryService ds)
+        public DirectoryController()
         {
-            _ds = ds;
         }
 
-        internal RootDirectory GetRootDirectory()
+        internal Directory GetRootDirectory()
         {
             try
             {
@@ -32,10 +32,10 @@ namespace ConsoleApp
             try
             {
                 _ds.Mkdir(option, id);
+                Console.WriteLine("Successfully Created");
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
         }

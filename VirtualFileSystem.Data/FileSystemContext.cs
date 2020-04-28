@@ -17,9 +17,5 @@ namespace VirtualFileSystem.Data
             optionsBuilder.EnableSensitiveDataLogging().UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = VirtualFileSystemData");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<RootDirectory>().ToTable("RootDirectory");
-        }
     }
 }

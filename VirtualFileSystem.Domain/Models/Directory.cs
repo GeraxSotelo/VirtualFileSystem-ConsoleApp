@@ -18,7 +18,7 @@ namespace VirtualFileSystem.Domain
         public string Name { get; set; }
         public List<Directory> Directories { get; set; }
         public List<File> Files { get; set; }
-        public int DirectoryId { get; set; }
+        public int? DirectoryId { get; set; }
 
     }
 }

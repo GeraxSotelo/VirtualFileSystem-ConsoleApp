@@ -2,30 +2,40 @@
 using System.Collections.Generic;
 using System.Text;
 using VirtualFileSystem.Domain;
-using VirtualFileSystem.Domain.Models;
 
 namespace ConsoleApp
 {
     class DirectoryService
     {
-        private readonly DirectoryRepository _repo;
-        public DirectoryService(DirectoryRepository repo)
+        private readonly DirectoryRepository _repo = new DirectoryRepository();
+        public DirectoryService()
         {
-            _repo = repo;
         }
 
         internal void Mkdir(string option, int id)
         {
             Directory dir = new Directory { Name = option, DirectoryId = id };
+            var exists = _repo.DirectoryExists(dir.Name, dir.DirectoryId);
+            if (exists)
+            {
+                throw new Exception($"Directory {dir.Name} already exists in this location.");
+            }
             _repo.Mkdir(dir);
         }
 
-        internal RootDirectory GetRootDirectory()
+        internal Directory GetRootDirectory()
         {
             var found = _repo.GetRootDirectory();
             if (found == null)
             {
-                RootDirectory root = _repo.CreateRootDirectory(root);
+                Directory root = new Directory { Name = "root", DirectoryId = null };
+                int id = _repo.CreateRootDirectory(root);
+                root.Id = id;
+                return root;
+            }
+            else
+            {
+                return found;
             }
         }
     }

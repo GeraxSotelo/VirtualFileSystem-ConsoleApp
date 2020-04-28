@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using VirtualFileSystem.Data;
 using VirtualFileSystem.Domain;
@@ -26,9 +27,20 @@ namespace ConsoleApp
             //}
         }
 
-        internal object GetRootDirectory()
+        internal bool DirectoryExists(string name, int? directoryId)
         {
-            return _context.Set<RootDirectory>().Find(1);
+            return _context.Directories.Any(e => e.Name == name && e.DirectoryId == directoryId);
+        }
+
+        internal Directory GetRootDirectory()
+        {
+            return _context.Directories.Find(1);
+        }
+
+        internal int CreateRootDirectory(Directory root)
+        {
+            _context.Directories.Add(root);
+            return _context.SaveChanges();
         }
     }
 }
