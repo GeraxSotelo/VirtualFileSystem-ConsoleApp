@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp.Controllers;
+using System;
 using VirtualFileSystem.Domain;
 using VirtualFileSystem.Domain.Models;
 
@@ -9,6 +10,7 @@ namespace ConsoleApp
         private bool _running = true;
         private Directory _root;
         private CommandParser _cp = new CommandParser();
+        private readonly UtilityController _uc = new UtilityController();
         private readonly DirectoryController _dc = new DirectoryController();
         private readonly FileSystem _vfs;
 
@@ -49,6 +51,12 @@ namespace ConsoleApp
                 case "q":
                 case "e":
                     _running = false;
+                    break;
+                case "help":
+                    _uc.Help();
+                    break;
+                case "ls":
+                    _uc.Ls(_vfs.CurrentDirectory.Id);
                     break;
                 case "mkdir":
                     _dc.Mkdir(parsedInput.Option, _vfs.CurrentDirectory.Id);

@@ -5,24 +5,14 @@ using VirtualFileSystem.Domain;
 
 namespace ConsoleApp
 {
-    class Program
+    public class Program
     {
         private static FileSystemContext _context = new FileSystemContext();
+        private static Startup startup = new Startup();
         static void Main(string[] args)
         {
             ProgramExecuter pe = new ProgramExecuter();
             pe.Run();
-            //GetDirectories("After Add: ");
-        }
-
-        private static void GetDirectories(string text)
-        {
-            var directories = _context.Directories.ToList(); //failing. looking for rootdirectory column
-            Console.WriteLine($"{text}: Directory count is {directories.Count}");
-            foreach (var directory in directories)
-            {
-                Console.WriteLine(directory.Name);
-            }
         }
     }
 }
