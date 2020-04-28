@@ -8,13 +8,13 @@ using VirtualFileSystem.Domain.Models;
 
 namespace ConsoleApp
 {
-    class DirectoryRepository
+    public class DirectoriesRepository
     {
         private static FileSystemContext _context = new FileSystemContext();
 
         internal bool DirectoryExists(string name, int? directoryId)
         {
-            return _context.Directories.Any(e => e.Name == name && e.DirectoryId == directoryId);
+            return _context.Directories.Any(d => d.Name == name && d.DirectoryId == directoryId);
         }
 
         internal Directory GetRootDirectory()

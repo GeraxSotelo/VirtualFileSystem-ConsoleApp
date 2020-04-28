@@ -6,11 +6,11 @@ using VirtualFileSystem.Domain;
 
 namespace ConsoleApp
 {
-    class DirectoryController
+    public class DirectoriesController
     {
-        private readonly DirectoryService _ds = new DirectoryService();
+        private readonly DirectoriesService _ds = new DirectoriesService();
 
-        public DirectoryController()
+        public DirectoriesController()
         {
         }
 
@@ -32,7 +32,7 @@ namespace ConsoleApp
             try
             {
                 _ds.Mkdir(option, id);
-                Console.WriteLine("Successfully Created");
+                Console.WriteLine($"\nSuccessfully Created directory '{option}'");
             }
             catch (Exception e)
             {

@@ -5,10 +5,10 @@ using VirtualFileSystem.Domain;
 
 namespace ConsoleApp
 {
-    class DirectoryService
+    public class DirectoriesService
     {
-        private readonly DirectoryRepository _repo = new DirectoryRepository();
-        public DirectoryService()
+        private readonly DirectoriesRepository _repo = new DirectoriesRepository();
+        public DirectoriesService()
         {
         }
 
@@ -35,12 +35,13 @@ namespace ConsoleApp
 
         internal void Mkdir(string option, int id)
         {
-            Directory dir = new Directory { Name = option, DirectoryId = id };
-            var exists = _repo.DirectoryExists(dir.Name, dir.DirectoryId);
+            var exists = _repo.DirectoryExists(option, id);
             if (exists)
             {
-                throw new Exception($"Directory {dir.Name} already exists in this location.");
+                throw new Exception($"\nDirectory '{option}' already exists in this location.");
             }
+
+            Directory dir = new Directory { Name = option, DirectoryId = id };
             _repo.Mkdir(dir);
         }
 

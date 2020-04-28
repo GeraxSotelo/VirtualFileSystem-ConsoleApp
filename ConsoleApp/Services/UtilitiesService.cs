@@ -5,7 +5,7 @@ using VirtualFileSystem.Domain;
 
 namespace ConsoleApp.Services
 {
-    public class UtilityService
+    public class UtilitiesService
     {
         public List<string> Messages { get; set; } = new List<string>();
         

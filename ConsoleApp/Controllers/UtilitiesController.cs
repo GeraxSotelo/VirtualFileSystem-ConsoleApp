@@ -6,12 +6,12 @@ using System.Text;
 
 namespace ConsoleApp.Controllers
 {
-    public class UtilityController
+    public class UtilitiesController
     {
         public List<string> Messages { get; set; }
-        private readonly UtilityService _us = new UtilityService();
-        private readonly DirectoryService _ds = new DirectoryService();
-        public UtilityController()
+        private readonly UtilitiesService _us = new UtilitiesService();
+        private readonly DirectoriesService _ds = new DirectoriesService();
+        public UtilitiesController()
         {
             Messages = new List<string>();
         }

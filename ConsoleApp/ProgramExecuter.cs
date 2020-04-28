@@ -10,9 +10,10 @@ namespace ConsoleApp
         private bool _running = true;
         private Directory _root;
         private CommandParser _cp = new CommandParser();
-        private readonly UtilityController _uc = new UtilityController();
-        private readonly DirectoryController _dc = new DirectoryController();
         private readonly FileSystem _vfs;
+        private readonly UtilitiesController _uc = new UtilitiesController();
+        private readonly DirectoriesController _dc = new DirectoriesController();
+        private readonly FilesController _fc = new FilesController();
 
         public ProgramExecuter()
         {
@@ -60,6 +61,9 @@ namespace ConsoleApp
                     break;
                 case "mkdir":
                     _dc.Mkdir(parsedInput.Option, _vfs.CurrentDirectory.Id);
+                    break;
+                case "touch":
+                    _fc.Touch(parsedInput.Option, _vfs.CurrentDirectory.Id);
                     break;
                 default:
                     parsedInput.Command = "Invalid input";
