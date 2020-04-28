@@ -67,6 +67,7 @@ namespace ConsoleApp
                     break;
                 default:
                     parsedInput.Command = "Invalid input";
+                    Console.WriteLine(parsedInput.Command);
                     break;
             }
             return parsedInput;

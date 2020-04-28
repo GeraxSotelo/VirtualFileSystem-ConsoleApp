@@ -10,5 +10,6 @@ namespace VirtualFileSystem.Domain.Interfaces
         string Name { get; set; }
         List<Directory> Directories { get; set; }
         List<File> Files { get; set; }
+        int? DirectoryId { get; set; }
     }
 }

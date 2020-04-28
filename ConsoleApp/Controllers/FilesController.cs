@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleApp.Controllers
 {
-    class FilesController
+    public class FilesController
     {
         private readonly FilesService _fs = new FilesService();
 

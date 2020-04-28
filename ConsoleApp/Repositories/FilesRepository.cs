@@ -16,6 +16,11 @@ namespace ConsoleApp.Repositories
             return _context.Files.Any(f => f.Name == name && f.DirectoryId == directoryId);
         }
 
+        internal IEnumerable<File> GetFilesByDirectoryId(int id)
+        {
+            return _context.Files.Where(f => f.DirectoryId == id).ToList();
+        }
+
         internal void Touch(File file)
         {
             _context.Files.Add(file);

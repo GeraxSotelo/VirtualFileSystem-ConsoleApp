@@ -11,6 +11,7 @@ namespace ConsoleApp.Controllers
         public List<string> Messages { get; set; }
         private readonly UtilitiesService _us = new UtilitiesService();
         private readonly DirectoriesService _ds = new DirectoriesService();
+        private readonly FilesService _fs = new FilesService();
         public UtilitiesController()
         {
             Messages = new List<string>();
@@ -27,7 +28,8 @@ namespace ConsoleApp.Controllers
             try
             {
                 var dirs = _ds.GetDirectoriesByDirectoryId(id);
-                Messages = _us.Ls(dirs);
+                var files = _fs.GetFilesByDirectoryId(id);
+                Messages = _us.Ls(dirs, files);
             }
             catch (Exception e)
             {

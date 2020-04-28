@@ -18,11 +18,15 @@ namespace ConsoleApp.Services
             return Messages;
         }
 
-        internal List<string> Ls(IEnumerable<Directory> dirs)
+        internal List<string> Ls(IEnumerable<Directory> dirs, IEnumerable<File> files)
         {
             foreach (var dir in dirs)
             {
                 Messages.Add(dir.Name);
+            }
+            foreach(var file in files)
+            {
+                Messages.Add(file.Name);
             }
             return Messages;
         }

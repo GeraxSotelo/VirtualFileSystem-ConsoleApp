@@ -10,6 +10,11 @@ namespace ConsoleApp.Services
     {
         private readonly FilesRepository _repo = new FilesRepository();
 
+        internal IEnumerable<File> GetFilesByDirectoryId(int id)
+        {
+            return _repo.GetFilesByDirectoryId(id);
+        }
+
         internal void Touch(string option, int id)
         {
             var exists = _repo.FileExists(option, id);
@@ -21,5 +26,6 @@ namespace ConsoleApp.Services
             File file = new File { Name = option, DirectoryId = id };
             _repo.Touch(file);
         }
+
     }
 }
