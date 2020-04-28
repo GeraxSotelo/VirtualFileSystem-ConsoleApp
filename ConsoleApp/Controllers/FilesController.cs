@@ -9,12 +9,12 @@ namespace ConsoleApp.Controllers
     {
         private readonly FilesService _fs = new FilesService();
 
-        internal void Touch(string option, int id)
+        internal void Touch(string name, int id)
         {
             try
             {
-                _fs.Touch(option, id);
-                Console.WriteLine($"\nSuccessfully created file '{option}'");
+                _fs.Touch(name, id);
+                Console.WriteLine($"\nSuccessfully created file '{name}'");
             }
             catch (Exception e)
             {
