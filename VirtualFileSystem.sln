@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFileSystem.Domain", "VirtualFileSystem.Domain\VirtualFileSystem.Domain.csproj", "{CD6A353C-4DBF-4996-A84C-6A808381A0A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualFileSystem.Domain", "VirtualFileSystem.Domain\VirtualFileSystem.Domain.csproj", "{CD6A353C-4DBF-4996-A84C-6A808381A0A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFileSystem.Data", "VirtualFileSystem.Data\VirtualFileSystem.Data.csproj", "{43F1B3C2-6DCE-4E00-A9DC-14C0DA677B0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualFileSystem.Data", "VirtualFileSystem.Data\VirtualFileSystem.Data.csproj", "{43F1B3C2-6DCE-4E00-A9DC-14C0DA677B0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{EE8FEFB6-5A71-4508-A629-E3A42CAA9CB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{EE8FEFB6-5A71-4508-A629-E3A42CAA9CB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
