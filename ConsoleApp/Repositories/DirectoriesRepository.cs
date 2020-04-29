@@ -22,10 +22,12 @@ namespace ConsoleApp
             return _context.Directories.Find(1);
         }
 
-        internal int CreateRootDirectory(Directory root)
+        internal Directory CreateRootDirectory(Directory root)
         {
             _context.Directories.Add(root);
-            return _context.SaveChanges();
+            //root is now being tracked
+            _context.SaveChanges();
+            return root;
         }
 
         internal IEnumerable<Directory> GetDirectoriesByDirectoryId(int id)

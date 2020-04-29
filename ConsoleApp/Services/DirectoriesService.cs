@@ -18,9 +18,7 @@ namespace ConsoleApp
             if (found == null)
             {
                 Directory root = new Directory { Name = "root", DirectoryId = null };
-                int id = _repo.CreateRootDirectory(root);
-                root.Id = id;
-                return root;
+                return _repo.CreateRootDirectory(root);
             }
             else
             {
