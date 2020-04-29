@@ -13,7 +13,7 @@ namespace VirtualFileSystem.Tests
         {
             using (var context = new FileSystemContext())
             {
-                context.Database.EnsureDeleted();
+                //context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 var dir = new Directory();
