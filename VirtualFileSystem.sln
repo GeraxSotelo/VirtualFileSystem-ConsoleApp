@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualFileSystem.Data", "V
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{EE8FEFB6-5A71-4508-A629-E3A42CAA9CB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFileSystem.Tests", "VirtualFileSystem.Tests\VirtualFileSystem.Tests.csproj", "{02E47775-3E5D-442C-A478-B6CE7D653105}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EE8FEFB6-5A71-4508-A629-E3A42CAA9CB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE8FEFB6-5A71-4508-A629-E3A42CAA9CB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE8FEFB6-5A71-4508-A629-E3A42CAA9CB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E47775-3E5D-442C-A478-B6CE7D653105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E47775-3E5D-442C-A478-B6CE7D653105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E47775-3E5D-442C-A478-B6CE7D653105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E47775-3E5D-442C-A478-B6CE7D653105}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
