@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ConsoleApp;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using VirtualFileSystem.Data;
 using VirtualFileSystem.Domain;
 using Xunit;
@@ -12,6 +14,8 @@ namespace VirtualFileSystem.Tests
     {
         private readonly DbContextOptionsBuilder builder;
         private readonly ITestOutputHelper _output;
+        private readonly ProgramExecuter _pe;
+
 
         public InMemoryTests(ITestOutputHelper output)
         {
@@ -34,6 +38,23 @@ namespace VirtualFileSystem.Tests
 
                 //Check the state of the entity is added.
                 Assert.Equal(EntityState.Added, context.Entry(dir).State);
+            }
+        }
+
+        [Fact]
+        public void CanInsertSingleDirectory()
+        {
+            builder.UseInMemoryDatabase("InsertSingleDirectory");
+
+            using (var context = new FileSystemContext(builder.Options))
+            {
+                var bizlogic = new BusinessDataLogic(context);
+                bizlogic.Mkdir(new Directory());
+            }
+
+            using (var context2 = new FileSystemContext(builder.Options))
+            {
+                Assert.Equal(1, context2.Directories.Count());
             }
         }
     }
