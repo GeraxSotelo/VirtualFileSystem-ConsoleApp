@@ -7,7 +7,6 @@ namespace ConsoleApp
 {
     public class Program
     {
-        private static FileSystemContext _context = new FileSystemContext();
         static void Main(string[] args)
         {
             ProgramExecuter pe = new ProgramExecuter();
