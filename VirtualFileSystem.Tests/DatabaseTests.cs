@@ -13,6 +13,7 @@ namespace VirtualFileSystem.Tests
         {
             using (var context = new FileSystemContext())
             {
+                //localdb VirtualFileSystemTestData
                 //context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 

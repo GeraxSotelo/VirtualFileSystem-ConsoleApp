@@ -4,15 +4,24 @@ using System.Diagnostics;
 using VirtualFileSystem.Data;
 using VirtualFileSystem.Domain;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace VirtualFileSystem.Tests
 {
     public class InMemoryTests
     {
+        private readonly DbContextOptionsBuilder builder;
+        private readonly ITestOutputHelper _output;
+
+        public InMemoryTests(ITestOutputHelper output)
+        {
+            builder = new DbContextOptionsBuilder();
+            _output = output;
+        }
+
         [Fact]
         public void CanInsertDirectoryIntoDatabase()
         {
-            var builder = new DbContextOptionsBuilder();
             //UsInMemoryDatabase() needs a string to be passed in to give a name to that instance
             //It's how EF Core keeps track of different instances of the provider in memory.
             builder.UseInMemoryDatabase("CanInsertDirectory");

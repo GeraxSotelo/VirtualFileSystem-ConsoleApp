@@ -22,10 +22,10 @@ namespace VirtualFileSystem.Data
         {
             if(!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.EnableSensitiveDataLogging().UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = VirtualFileSystemData");
+                //optionsBuilder.EnableSensitiveDataLogging().UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = VirtualFileSystemData");
 
-                //For Tests
-                //optionsBuilder.EnableSensitiveDataLogging().UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = VirtualFileSystemTestData");
+                //FOR TESTS
+                optionsBuilder.EnableSensitiveDataLogging().UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = VirtualFileSystemTestData");
             }
         }
 
