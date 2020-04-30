@@ -9,6 +9,7 @@ namespace VirtualFileSystem.Tests
     public class DatabaseTests
     {
         [Fact]
+        [Trait("Category", "Directory")]
         public void CanInsertDirectoryIntoDatabase()
         {
             using (var context = new FileSystemContext())

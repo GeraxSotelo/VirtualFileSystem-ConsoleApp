@@ -5,7 +5,7 @@ using VirtualFileSystem.Domain.Models;
 
 namespace ConsoleApp
 {
-    class ProgramExecuter
+    public class ProgramExecuter
     {
         private bool _running = true;
         private Directory _root;
@@ -21,7 +21,7 @@ namespace ConsoleApp
             _vfs = new FileSystem(_root);
         }
 
-        private Directory GetRootDirectory()
+        public Directory GetRootDirectory()
         {
             return _dc.GetRootDirectory();
         }
@@ -36,13 +36,13 @@ namespace ConsoleApp
             }
         }
 
-        private void GetUserInput()
+        public void GetUserInput()
         {
             string input = Console.ReadLine() + " ";
             AnalyzeInput(input);
         }
 
-        private UserInput AnalyzeInput(string input)
+        public UserInput AnalyzeInput(string input)
         {
             UserInput parsedInput = new UserInput();
             parsedInput = _cp.ParseInput(input);

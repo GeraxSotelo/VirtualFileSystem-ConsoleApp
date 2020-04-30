@@ -20,6 +20,7 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsoleApp\ConsoleApp.csproj" />
     <ProjectReference Include="..\VirtualFileSystem.Data\VirtualFileSystem.Data.csproj" />
     <ProjectReference Include="..\VirtualFileSystem.Domain\VirtualFileSystem.Domain.csproj" />
   </ItemGroup>

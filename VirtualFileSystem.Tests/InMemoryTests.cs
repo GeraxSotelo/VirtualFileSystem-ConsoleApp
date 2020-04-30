@@ -20,6 +20,7 @@ namespace VirtualFileSystem.Tests
         }
 
         [Fact]
+        [Trait("Category", "Directory")]
         public void CanInsertDirectoryIntoDatabase()
         {
             //UsInMemoryDatabase() needs a string to be passed in to give a name to that instance
