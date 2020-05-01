@@ -60,7 +60,10 @@ namespace ConsoleApp
                     _uc.Ls(_vfs.CurrentDirectory.Id);
                     break;
                 case "mkdir":
-                    _dc.Mkdir(parsedInput.Option, _vfs.CurrentDirectory.Id);
+                    _dc.MkDir(parsedInput.Option, _vfs.CurrentDirectory.Id);
+                    break;
+                case "rmdir":
+                    _dc.RmDir(parsedInput.Option, _vfs.CurrentDirectory.Id);
                     break;
                 case "touch":
                     _fc.Touch(parsedInput.Option, _vfs.CurrentDirectory.Id);

@@ -12,9 +12,11 @@ namespace ConsoleApp.Services
         internal List<string> Help()
         {
             Messages.Add("\nmkdir     Creates a directory.");
-            Messages.Add("ls        Lists files in current working directory");
-            Messages.Add("touch     Create a file without any content");
-            Messages.Add("rm        Remove a file");
+            Messages.Add("md     Creates a directory.");
+            Messages.Add("ls        Lists files in current working directory.");
+            Messages.Add("touch     Create a file without any content.");
+            Messages.Add("rmdir        Deletes a directory.");
+            Messages.Add("rd        Deletes a directory.");
             return Messages;
         }
 

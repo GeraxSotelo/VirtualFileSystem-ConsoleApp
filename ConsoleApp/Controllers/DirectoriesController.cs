@@ -27,12 +27,25 @@ namespace ConsoleApp
             }
         }
 
-        internal void Mkdir(string option, int id)
+        internal void MkDir(string option, int directoryId)
         {
             try
             {
-                _ds.Mkdir(option, id);
-                Console.WriteLine($"\nSuccessfully Created directory '{option}'");
+                _ds.MkDir(option, directoryId);
+                Console.WriteLine($"\nSuccessfully created directory '{option}'");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        internal void RmDir(string option, int directoryId)
+        {
+            try
+            {
+                _ds.RmDir(option, directoryId);
+                Console.WriteLine($"\nSuccesfully deleted file '{option}'");
             }
             catch (Exception e)
             {
