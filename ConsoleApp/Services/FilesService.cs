@@ -25,6 +25,14 @@ namespace ConsoleApp.Services
             _repo.Touch(file);
         }
 
+        internal void Rm(string name, int directoryId)
+        {
+            var found = _repo.GetByNameAndDirectoryId(name, directoryId);
+            if(found == null) { throw new Exception("Invalid File Name"); }
+
+            _repo.Rm(found);
+        }
+
         internal void ValidFileName(string name)
         {
             string pattern = @"^[A-Za-z0-9 _]*$";

@@ -32,15 +32,12 @@ namespace ConsoleApp
             return _repo.GetDirectoriesByDirectoryId(id);
         }
 
-        internal void MkDir(string option, int directoryId)
+        internal void MkDir(string name, int directoryId)
         {
-            var exists = _repo.DirectoryExists(option, directoryId);
-            if (exists)
-            {
-                throw new Exception($"\nDirectory '{option}' already exists in this location.");
-            }
+            ValidFileName(name);
+            DirectoryExists(name, directoryId);
 
-            Directory dir = new Directory { Name = option, DirectoryId = directoryId };
+            Directory dir = new Directory { Name = name, DirectoryId = directoryId };
             _repo.MkDir(dir);
         }
 
@@ -58,6 +55,15 @@ namespace ConsoleApp
             if (name == "" || !Regex.IsMatch(name, pattern))
             {
                 throw new Exception("\nPlease enter a valid directory name.");
+            }
+        }
+
+        private void DirectoryExists(string name, int directoryId)
+        {
+            var exists = _repo.DirectoryExists(name, directoryId);
+            if (exists)
+            {
+                throw new Exception($"\nDirectory '{name}' already exists in this location.");
             }
         }
     }

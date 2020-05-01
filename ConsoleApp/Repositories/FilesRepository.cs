@@ -11,20 +11,32 @@ namespace ConsoleApp.Repositories
     {
         private static FileSystemContext _context = new FileSystemContext();
 
-        internal bool FileExists(string name, int directoryId)
-        {
-            return _context.Files.Any(f => f.Name == name && f.DirectoryId == directoryId);
-        }
-
         internal IEnumerable<File> GetFilesByDirectoryId(int id)
         {
             return _context.Files.Where(f => f.DirectoryId == id).ToList();
+        }
+
+        internal File GetByNameAndDirectoryId(string name, int directoryId)
+        {
+            var file = _context.Files.Where(f => f.Name == name && f.DirectoryId == directoryId).FirstOrDefault();
+            return file;
         }
 
         internal void Touch(File file)
         {
             _context.Files.Add(file);
             _context.SaveChanges();
+        }
+
+        internal void Rm(File found)
+        {
+            _context.Files.Remove(found);
+            _context.SaveChanges();
+        }
+
+        internal bool FileExists(string name, int directoryId)
+        {
+            return _context.Files.Any(f => f.Name == name && f.DirectoryId == directoryId);
         }
     }
 }

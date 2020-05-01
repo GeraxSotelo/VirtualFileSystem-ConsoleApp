@@ -43,7 +43,6 @@ namespace ConsoleApp
 
             //var foundDir = _context.Directories.Find(id);
             //foundDir.Directories.Add(directory);
-
             //using (var newContext = new FileSystemContext())
             //{
             //    newContext.Directories.Attach(foundDir);

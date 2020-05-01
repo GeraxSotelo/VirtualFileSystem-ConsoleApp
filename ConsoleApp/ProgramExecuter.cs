@@ -60,13 +60,18 @@ namespace ConsoleApp
                     _uc.Ls(_vfs.CurrentDirectory.Id);
                     break;
                 case "mkdir":
+                case "md":
                     _dc.MkDir(parsedInput.Option, _vfs.CurrentDirectory.Id);
                     break;
                 case "rmdir":
+                case "rd":
                     _dc.RmDir(parsedInput.Option, _vfs.CurrentDirectory.Id);
                     break;
                 case "touch":
                     _fc.Touch(parsedInput.Option, _vfs.CurrentDirectory.Id);
+                    break;
+                case "rm":
+                    _fc.Rm(parsedInput.Option, _vfs.CurrentDirectory.Id);
                     break;
                 default:
                     parsedInput.Command = "Invalid input";
