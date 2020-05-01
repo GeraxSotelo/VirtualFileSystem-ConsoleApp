@@ -46,6 +46,7 @@ namespace ConsoleApp
         {
             UserInput parsedInput = new UserInput();
             parsedInput = _cp.ParseInput(input);
+            int currDirId = _vfs.CurrentDirectory.Id;
 
             switch(parsedInput.Command)
             {
@@ -54,27 +55,21 @@ namespace ConsoleApp
                     _running = false;
                     break;
                 case "help":
-                    _uc.Help();
-                    break;
                 case "ls":
-                    _uc.Ls(_vfs.CurrentDirectory.Id);
+                    _uc.AnalyzeInput(parsedInput.Command, currDirId);
                     break;
                 case "mkdir":
                 case "md":
-                    _dc.MkDir(parsedInput.Option, _vfs.CurrentDirectory.Id);
-                    break;
                 case "rmdir":
                 case "rd":
-                    _dc.RmDir(parsedInput.Option, _vfs.CurrentDirectory.Id);
+                    _dc.AnalyzeInput(parsedInput, currDirId);
                     break;
                 case "touch":
-                    _fc.Touch(parsedInput.Option, _vfs.CurrentDirectory.Id);
-                    break;
                 case "rm":
-                    _fc.Rm(parsedInput.Option, _vfs.CurrentDirectory.Id);
+                    _fc.AnalyzeInput(parsedInput, currDirId);
                     break;
                 default:
-                    parsedInput.Command = "Invalid input";
+                    parsedInput.Command = "> Invalid Command";
                     Console.WriteLine(parsedInput.Command);
                     break;
             }

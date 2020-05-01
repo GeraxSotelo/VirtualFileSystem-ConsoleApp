@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using VirtualFileSystem.Domain;
-
+using VirtualFileSystem.Domain.Models;
 
 namespace ConsoleApp
 {
@@ -27,12 +27,27 @@ namespace ConsoleApp
             }
         }
 
+        internal void AnalyzeInput(UserInput parsedInput, int currDirId)
+        {
+            switch (parsedInput.Command)
+            {
+                case "mkdir":
+                case "md":
+                    MkDir(parsedInput.Option, currDirId);
+                    break;
+                case "rmdir":
+                case "rd":
+                    RmDir(parsedInput.Option, currDirId);
+                    break;
+            }
+        }
+
         internal void MkDir(string name, int directoryId)
         {
             try
             {
                 _ds.MkDir(name, directoryId);
-                Console.WriteLine($"\nSuccessfully created directory '{name}'");
+                Console.WriteLine($"\n--Successfully created directory '{name}'--");
             }
             catch (Exception e)
             {
@@ -45,7 +60,7 @@ namespace ConsoleApp
             try
             {
                 _ds.RmDir(name, directoryId);
-                Console.WriteLine($"\nSuccesfully deleted file '{name}'");
+                Console.WriteLine($"\n--Succesfully deleted file '{name}'--");
             }
             catch (Exception e)
             {

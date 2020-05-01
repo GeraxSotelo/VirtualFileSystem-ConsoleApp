@@ -28,7 +28,7 @@ namespace ConsoleApp.Services
         internal void Rm(string name, int directoryId)
         {
             var found = _repo.GetByNameAndDirectoryId(name, directoryId);
-            if(found == null) { throw new Exception("Invalid File Name"); }
+            if(found == null) { throw new Exception("--Invalid File Name--"); }
 
             _repo.Rm(found);
         }
@@ -38,14 +38,14 @@ namespace ConsoleApp.Services
             string pattern = @"^[A-Za-z0-9 _]*$";
             if (name == "" || !Regex.IsMatch(name, pattern))
             {
-                throw new Exception("\nPlease enter a valid file name.");
+                throw new Exception("\n--Please enter a valid file name.--");
             }
         }
 
         internal void AlreadyExists(string name, int id)
         {
             var exists = _repo.GetByNameAndDirectoryId(name, id);
-            if (exists != null) { throw new Exception($"\nFile '{name}' already exists in this location."); }
+            if (exists != null) { throw new Exception($"\n--File '{exists.Name}' already exists in this location.--"); }
         }
 
     }

@@ -11,13 +11,13 @@ namespace ConsoleApp.Services
         
         internal List<string> Help()
         {
-            Messages.Add("\nmkdir     Creates a directory.");
-            Messages.Add("ls        Lists files in current working directory.");
-            Messages.Add("md        Creates a directory.");
-            Messages.Add("rmdir     Deletes a directory.");
-            Messages.Add("rd        Deletes a directory.");
-            Messages.Add("touch     Creates a file without any content.");
-            Messages.Add("rm        Deletes a file.");
+            Messages.Add("\n LS        Lists files in current working directory.");
+            Messages.Add(" MKDIR     Creates a directory.");
+            Messages.Add(" MD        Creates a directory.");
+            Messages.Add(" RMDIR     Deletes a directory.");
+            Messages.Add(" RD        Deletes a directory.");
+            Messages.Add(" TOUCH     Creates a file without any content.");
+            Messages.Add(" RM        Deletes a file.");
             return Messages;
         }
 
@@ -25,11 +25,11 @@ namespace ConsoleApp.Services
         {
             foreach (var dir in dirs)
             {
-                Messages.Add(dir.Name);
+                Messages.Add("\n "+dir.Name);
             }
             foreach(var file in files)
             {
-                Messages.Add(file.Name);
+                Messages.Add(" "+file.Name);
             }
             return Messages;
         }

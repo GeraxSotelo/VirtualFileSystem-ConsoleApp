@@ -44,7 +44,7 @@ namespace ConsoleApp
         internal void RmDir(string name, int directoryId)
         {
             var found = _repo.GetByNameAndDirectoryId(name, directoryId);
-            if(found == null) { throw new Exception("\nInvalid Directory Name"); }
+            if(found == null) { throw new Exception("\n--Invalid Directory Name--"); }
 
             _repo.RmDir(found);
         }
@@ -54,14 +54,14 @@ namespace ConsoleApp
             string pattern = @"^[A-Za-z0-9 _]*$";
             if (name == "" || !Regex.IsMatch(name, pattern))
             {
-                throw new Exception("\nPlease enter a valid directory name.");
+                throw new Exception("\n--Please enter a valid directory name.--");
             }
         }
 
         private void AlreadyExists(string name, int directoryId)
         {
             var exists = _repo.GetByNameAndDirectoryId(name, directoryId);
-            if (exists != null) { throw new Exception($"\nDirectory '{name}' already exists in this location."); }
+            if (exists != null) { throw new Exception($"\n--Directory '{exists.Name}' already exists in this location.--"); }
         }
 
     }

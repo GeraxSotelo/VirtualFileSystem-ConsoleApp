@@ -17,18 +17,31 @@ namespace ConsoleApp.Controllers
             Messages = new List<string>();
         }
 
+        internal void AnalyzeInput(string command, int currDirId)
+        {
+            switch (command)
+            {
+                case "help":
+                    Help();
+                    break;
+                case "ls":
+                    Ls(currDirId);
+                    break;
+            }
+        }
+
         internal void Help()
         {
             Messages = _us.Help();
             Print();
         }
 
-        internal void Ls(int id)
+        internal void Ls(int directoryId)
         {
             try
             {
-                var dirs = _ds.GetDirectoriesByDirectoryId(id);
-                var files = _fs.GetFilesByDirectoryId(id);
+                var dirs = _ds.GetDirectoriesByDirectoryId(directoryId);
+                var files = _fs.GetFilesByDirectoryId(directoryId);
                 Messages = _us.Ls(dirs, files);
             }
             catch (Exception e)

@@ -22,8 +22,8 @@ namespace VirtualFileSystem.Tests
 
         [Theory]
         [InlineData("MkDiR ", "mkdir")]
-        [InlineData("haha ", "Invalid input")]
-        [InlineData(" ", "Invalid input")]
+        [InlineData("haha ", "Invalid Command")]
+        [InlineData(" ", "Invalid Command")]
         public void ValidUserInput(string userInput, string expected)
         {
             UserInput actual = _pe.AnalyzeInput(userInput);

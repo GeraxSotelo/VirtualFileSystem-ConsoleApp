@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using VirtualFileSystem.Domain.Models;
 
 namespace ConsoleApp.Controllers
 {
@@ -9,12 +10,25 @@ namespace ConsoleApp.Controllers
     {
         private readonly FilesService _fs = new FilesService();
 
+        internal void AnalyzeInput(UserInput parsedInput, int currDirId)
+        {
+            switch (parsedInput.Command)
+            {
+                case "touch":
+                    Touch(parsedInput.Option, currDirId);
+                    break;
+                case "rm":
+                    Rm(parsedInput.Option, currDirId);
+                    break;
+            }
+        }
+
         internal void Touch(string name, int id)
         {
             try
             {
                 _fs.Touch(name, id);
-                Console.WriteLine($"\nSuccessfully created file '{name}'");
+                Console.WriteLine($"\n--Successfully created file '{name}'--");
             }
             catch (Exception e)
             {
@@ -27,7 +41,7 @@ namespace ConsoleApp.Controllers
             try
             {
                 _fs.Rm(name, directoryId);
-                Console.WriteLine($"\nSuccessfully deleted file '{name}'");
+                Console.WriteLine($"\n--Successfully deleted file '{name}'--");
             }
             catch (Exception e)
             {
