@@ -25,9 +25,9 @@ namespace ConsoleApp
             return root;
         }
 
-        internal Directory GetByNameAndDirectoryId(string option, int directoryId)
+        internal Directory GetByNameAndDirectoryId(string name, int directoryId)
         {
-            var dir = _context.Directories.Where(d => d.Name == option && d.DirectoryId == directoryId).FirstOrDefault();
+            var dir = _context.Directories.Where(d => d.Name == name && d.DirectoryId == directoryId).FirstOrDefault();
             return dir;
         }
 
@@ -48,11 +48,6 @@ namespace ConsoleApp
             //    newContext.Directories.Attach(foundDir);
             //    newContext.SaveChanges();
             //}
-        }
-
-        internal bool DirectoryExists(string name, int? directoryId)
-        {
-            return _context.Directories.Any(d => d.Name == name && d.DirectoryId == directoryId);
         }
 
         internal void RmDir(Directory found)

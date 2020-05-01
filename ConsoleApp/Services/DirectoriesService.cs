@@ -34,8 +34,8 @@ namespace ConsoleApp
 
         internal void MkDir(string name, int directoryId)
         {
-            ValidFileName(name);
-            DirectoryExists(name, directoryId);
+            ValidName(name);
+            AlreadyExists(name, directoryId);
 
             Directory dir = new Directory { Name = name, DirectoryId = directoryId };
             _repo.MkDir(dir);
@@ -49,7 +49,7 @@ namespace ConsoleApp
             _repo.RmDir(found);
         }
 
-        private void ValidFileName(string name)
+        private void ValidName(string name)
         {
             string pattern = @"^[A-Za-z0-9 _]*$";
             if (name == "" || !Regex.IsMatch(name, pattern))
@@ -58,13 +58,11 @@ namespace ConsoleApp
             }
         }
 
-        private void DirectoryExists(string name, int directoryId)
+        private void AlreadyExists(string name, int directoryId)
         {
-            var exists = _repo.DirectoryExists(name, directoryId);
-            if (exists)
-            {
-                throw new Exception($"\nDirectory '{name}' already exists in this location.");
-            }
+            var exists = _repo.GetByNameAndDirectoryId(name, directoryId);
+            if (exists != null) { throw new Exception($"\nDirectory '{name}' already exists in this location."); }
         }
+
     }
 }

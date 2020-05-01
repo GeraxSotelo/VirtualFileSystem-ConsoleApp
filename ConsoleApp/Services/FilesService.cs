@@ -18,8 +18,8 @@ namespace ConsoleApp.Services
 
         internal void Touch(string name, int id)
         {
-            ValidFileName(name);
-            FileExists(name, id);
+            ValidName(name);
+            AlreadyExists(name, id);
 
             File file = new File { Name = name, DirectoryId = id };
             _repo.Touch(file);
@@ -33,7 +33,7 @@ namespace ConsoleApp.Services
             _repo.Rm(found);
         }
 
-        internal void ValidFileName(string name)
+        internal void ValidName(string name)
         {
             string pattern = @"^[A-Za-z0-9 _]*$";
             if (name == "" || !Regex.IsMatch(name, pattern))
@@ -42,13 +42,10 @@ namespace ConsoleApp.Services
             }
         }
 
-        internal void FileExists(string name, int id)
+        internal void AlreadyExists(string name, int id)
         {
-            var exists = _repo.FileExists(name, id);
-            if (exists)
-            {
-                throw new Exception($"\nFile '{name}' already exists in this location.");
-            }
+            var exists = _repo.GetByNameAndDirectoryId(name, id);
+            if (exists != null) { throw new Exception($"\nFile '{name}' already exists in this location."); }
         }
 
     }

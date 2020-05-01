@@ -34,9 +34,5 @@ namespace ConsoleApp.Repositories
             _context.SaveChanges();
         }
 
-        internal bool FileExists(string name, int directoryId)
-        {
-            return _context.Files.Any(f => f.Name == name && f.DirectoryId == directoryId);
-        }
     }
 }
