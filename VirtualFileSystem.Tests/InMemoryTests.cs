@@ -14,7 +14,6 @@ namespace VirtualFileSystem.Tests
     {
         private readonly DbContextOptionsBuilder builder;
         private readonly ITestOutputHelper _output;
-        private readonly ProgramExecuter _pe;
 
 
         public InMemoryTests(ITestOutputHelper output)
@@ -42,6 +41,21 @@ namespace VirtualFileSystem.Tests
         }
 
         [Fact]
+        [Trait("Category", "File")]
+        public void CanInsertFileIntoDatabase()
+        {
+            builder.UseInMemoryDatabase("CanInsertFile");
+
+            using (var context = new FileSystemContext(builder.Options))
+            {
+                var file = new File() { DirectoryId = 1 };
+                context.Files.Add(file);
+
+                Assert.Equal(EntityState.Added, context.Entry(file).State);
+            }
+        }
+
+        [Fact]
         public void CanInsertSingleDirectory()
         {
             builder.UseInMemoryDatabase("InsertSingleDirectory");
@@ -55,6 +69,42 @@ namespace VirtualFileSystem.Tests
             using (var context2 = new FileSystemContext(builder.Options))
             {
                 Assert.Equal(1, context2.Directories.Count());
+            }
+        }
+
+        [Fact]
+        public void CanInsertSingleFile()
+        {
+            builder.UseInMemoryDatabase("InsertSingleFile");
+
+            using (var context = new FileSystemContext(builder.Options))
+            {
+                var bizlogic = new BusinessDataLogic(context);
+                bizlogic.Touch(new File() { DirectoryId = 1 });
+            }
+
+            using (var context2  = new FileSystemContext(builder.Options))
+            {
+                Assert.Equal(1, context2.Files.Count());
+            }
+        }
+
+        [Fact]
+        public void ThrowsExceptionForDuplicateDirectory()
+        {
+            builder.UseInMemoryDatabase("ThrowsException");
+
+            using (var context = new FileSystemContext(builder.Options))
+            {
+                context.Database.EnsureCreated();
+
+                var bizlogic = new BusinessDataLogic(context);
+
+                var dir = new Directory() { Name = "Exception Directory", DirectoryId = 1 };
+                context.Directories.Add(dir);
+                context.SaveChanges();
+
+                Assert.Throws<Exception>(() => bizlogic.AlreadyExists("Exception Directory", 1));
             }
         }
     }

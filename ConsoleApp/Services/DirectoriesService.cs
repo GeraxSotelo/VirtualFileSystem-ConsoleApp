@@ -32,7 +32,7 @@ namespace ConsoleApp
             return _repo.GetDirectoriesByDirectoryId(id);
         }
 
-        internal void MkDir(string name, int directoryId)
+        public void MkDir(string name, int directoryId)
         {
             ValidName(name);
             AlreadyExists(name, directoryId);
@@ -49,7 +49,7 @@ namespace ConsoleApp
             _repo.RmDir(found);
         }
 
-        private void ValidName(string name)
+        internal void ValidName(string name)
         {
             string pattern = @"^[A-Za-z0-9 _]*$";
             if (name == "" || !Regex.IsMatch(name, pattern))
@@ -58,7 +58,7 @@ namespace ConsoleApp
             }
         }
 
-        private void AlreadyExists(string name, int directoryId)
+        public void AlreadyExists(string name, int directoryId)
         {
             var exists = _repo.GetByNameAndDirectoryId(name, directoryId);
             if (exists != null) { throw new Exception($"\n--Directory '{exists.Name}' already exists in this location.--"); }

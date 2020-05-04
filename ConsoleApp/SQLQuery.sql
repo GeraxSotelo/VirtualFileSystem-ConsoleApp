@@ -1,0 +1,1 @@
+﻿-- DELETE FROM Directories WHERE Id = 9

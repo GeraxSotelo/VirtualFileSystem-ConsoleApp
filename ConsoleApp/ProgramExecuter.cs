@@ -69,7 +69,7 @@ namespace ConsoleApp
                     _fc.AnalyzeInput(parsedInput, currDirId);
                     break;
                 default:
-                    parsedInput.Command = "> Invalid Command";
+                    parsedInput.Command = "--Invalid Command--";
                     Console.WriteLine(parsedInput.Command);
                     break;
             }
