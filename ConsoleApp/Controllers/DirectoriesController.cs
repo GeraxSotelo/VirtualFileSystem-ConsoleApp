@@ -46,16 +46,41 @@ namespace ConsoleApp
             }
         }
 
+        private Directory GetParentDirectory(int currDirId)
+        {
+            try
+            {
+                var dir = _ds.GetDirectoryById(currDirId);
+                int parentId = dir.DirectoryId ?? default(int);
+                if(parentId == 0)
+                {
+                    return dir;
+                }
+                return _ds.GetDirectoryById(parentId);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         internal Directory Cd(string name, int currDirId)
         {
             try
             {
-                var dir = _ds.GetByNameAndDirectoryId(name, currDirId);
-                return dir;
+                if (name == "..")
+                {
+                    return GetParentDirectory(currDirId);
+                }
+                else
+                {
+                    return _ds.GetByNameAndDirectoryId(name, currDirId);
+                }
             }
             catch (Exception e)
             {
-                throw new ArgumentException(e.Message);
+                Console.WriteLine(e.Message);
+                return _ds.GetDirectoryById(currDirId);
             }
         }
 

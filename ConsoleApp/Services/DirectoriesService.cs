@@ -27,6 +27,13 @@ namespace ConsoleApp
             }
         }
 
+        internal Directory GetDirectoryById(int id)
+        {
+            var found = _repo.GetDirectoryById(id);
+            if (found == null) { throw new Exception("\n---Invalid Directory Id.---"); }
+            return found;
+        }
+
         internal Directory GetByNameAndDirectoryId(string name, int directoryId)
         {
             var found = _repo.GetByNameAndDirectoryId(name, directoryId);

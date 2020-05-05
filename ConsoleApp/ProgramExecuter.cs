@@ -64,7 +64,17 @@ namespace ConsoleApp
                 case "cd":
                     var dir = _dc.AnalyzeInput(parsedInput, currDirId);
                     _vfs.CurrentDirectory = dir;
-                    _currDirPath.Add($"/{dir.Name}");
+                    if (currDirId != dir.Id) //check same dir didn't get returned
+                    {
+                        if (parsedInput.Option == "..")
+                        {
+                            _currDirPath.RemoveAt(_currDirPath.Count - 1);
+                        }
+                        else
+                        {
+                            _currDirPath.Add($"/{dir.Name}");
+                        }
+                    }
                     break;
                 case "mkdir":
                 case "md":

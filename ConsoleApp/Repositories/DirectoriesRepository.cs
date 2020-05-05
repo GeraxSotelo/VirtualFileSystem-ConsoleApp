@@ -25,6 +25,11 @@ namespace ConsoleApp
             return root;
         }
 
+        internal Directory GetDirectoryById(int id)
+        {
+            return _context.Directories.Find(id);
+        }
+
         internal Directory GetByNameAndDirectoryId(string name, int directoryId)
         {
             var dir = _context.Directories.Where(d => d.Name == name && d.DirectoryId == directoryId).FirstOrDefault();
