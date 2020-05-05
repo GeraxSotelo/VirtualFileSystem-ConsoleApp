@@ -23,7 +23,6 @@ namespace ConsoleApp.Services
 
         internal List<string> Ls(IEnumerable<Directory> dirs, IEnumerable<File> files)
         {
-            Messages.Add("\n");
             foreach (var dir in dirs)
             {
                 Messages.Add(" "+dir.Name);

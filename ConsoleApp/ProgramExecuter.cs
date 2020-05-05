@@ -58,6 +58,10 @@ namespace ConsoleApp
                 case "ls":
                     _uc.AnalyzeInput(parsedInput.Command, currDirId);
                     break;
+                case "cd":
+                    var dir = _dc.AnalyzeInput(parsedInput, currDirId);
+                    _vfs.CurrentDirectory = dir;
+                    break;
                 case "mkdir":
                 case "md":
                 case "rmdir":
@@ -69,7 +73,7 @@ namespace ConsoleApp
                     _fc.AnalyzeInput(parsedInput, currDirId);
                     break;
                 default:
-                    parsedInput.Command = "--Invalid Command--";
+                    parsedInput.Command = "---Invalid Command---";
                     Console.WriteLine(parsedInput.Command);
                     break;
             }

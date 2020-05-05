@@ -27,18 +27,35 @@ namespace ConsoleApp
             }
         }
 
-        internal void AnalyzeInput(UserInput parsedInput, int currDirId)
+        internal dynamic AnalyzeInput(UserInput parsedInput, int currDirId)
         {
             switch (parsedInput.Command)
             {
+                case "cd":
+                    return Cd(parsedInput.Option, currDirId);
                 case "mkdir":
                 case "md":
                     MkDir(parsedInput.Option, currDirId);
-                    break;
+                    return "Completed";
                 case "rmdir":
                 case "rd":
                     RmDir(parsedInput.Option, currDirId);
-                    break;
+                    return "Completed";
+                default:
+                    return "Completed";
+            }
+        }
+
+        internal Directory Cd(string name, int currDirId)
+        {
+            try
+            {
+                var dir = _ds.GetByNameAndDirectoryId(name, currDirId);
+                return dir;
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException(e.Message);
             }
         }
 
@@ -47,7 +64,7 @@ namespace ConsoleApp
             try
             {
                 _ds.MkDir(name, directoryId);
-                Console.WriteLine($"\n--Successfully created directory '{name}'--");
+                Console.WriteLine($"\n---Successfully created directory '{name}.'---");
             }
             catch (Exception e)
             {
@@ -60,7 +77,7 @@ namespace ConsoleApp
             try
             {
                 _ds.RmDir(name, directoryId);
-                Console.WriteLine($"\n--Succesfully deleted file '{name}'--");
+                Console.WriteLine($"\n---Succesfully deleted file '{name}.'---");
             }
             catch (Exception e)
             {

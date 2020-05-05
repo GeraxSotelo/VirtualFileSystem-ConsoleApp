@@ -28,7 +28,7 @@ namespace ConsoleApp.Controllers
             try
             {
                 _fs.Touch(name, id);
-                Console.WriteLine($"\n--Successfully created file '{name}'--");
+                Console.WriteLine($"\n---Successfully created file '{name}'---");
             }
             catch (Exception e)
             {
@@ -41,7 +41,7 @@ namespace ConsoleApp.Controllers
             try
             {
                 _fs.Rm(name, directoryId);
-                Console.WriteLine($"\n--Successfully deleted file '{name}'--");
+                Console.WriteLine($"\n---Successfully deleted file '{name}'---");
             }
             catch (Exception e)
             {
