@@ -31,8 +31,9 @@ namespace ConsoleApp
         {
             switch (parsedInput.Command)
             {
+                case "chdir":
                 case "cd":
-                    return Cd(parsedInput.Option, currDirId);
+                    return ChDir(parsedInput.Option, currDirId);
                 case "mkdir":
                 case "md":
                     MkDir(parsedInput.Option, currDirId);
@@ -64,7 +65,7 @@ namespace ConsoleApp
             }
         }
 
-        internal Directory Cd(string name, int currDirId)
+        internal Directory ChDir(string name, int currDirId)
         {
             try
             {

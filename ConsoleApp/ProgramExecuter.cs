@@ -62,6 +62,7 @@ namespace ConsoleApp
                     _uc.AnalyzeInput(parsedInput.Command, currDirId);
                     break;
                 case "cd":
+                case "chdir":
                     var dir = _dc.AnalyzeInput(parsedInput, currDirId);
                     _vfs.CurrentDirectory = dir;
                     if (currDirId != dir.Id) //check same dir didn't get returned
