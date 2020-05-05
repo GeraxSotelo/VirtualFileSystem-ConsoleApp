@@ -1,5 +1,6 @@
 ﻿using ConsoleApp.Controllers;
 using System;
+using System.Collections.Generic;
 using VirtualFileSystem.Domain;
 using VirtualFileSystem.Domain.Models;
 
@@ -8,6 +9,7 @@ namespace ConsoleApp
     public class ProgramExecuter
     {
         private bool _running = true;
+        public List<string> _currDirPath { get; set; } = new List<string>();
         private Directory _root;
         private CommandParser _cp = new CommandParser();
         private readonly FileSystem _vfs;
@@ -19,6 +21,7 @@ namespace ConsoleApp
         {
             _root = GetRootDirectory();
             _vfs = new FileSystem(_root);
+            _currDirPath.Add(_vfs.CurrentDirectory.Name);
         }
 
         public Directory GetRootDirectory()
@@ -31,7 +34,7 @@ namespace ConsoleApp
             while (_running)
             {
                 Console.WriteLine("\nType a command. 'help' for information. 'q' or 'e' to exit.\n");
-                Console.Write($"{_vfs.CurrentDirectory.Name}: $ ");
+                PrintCurrentPath();
                 GetUserInput();
             }
         }
@@ -61,6 +64,7 @@ namespace ConsoleApp
                 case "cd":
                     var dir = _dc.AnalyzeInput(parsedInput, currDirId);
                     _vfs.CurrentDirectory = dir;
+                    _currDirPath.Add($"/{dir.Name}");
                     break;
                 case "mkdir":
                 case "md":
@@ -78,6 +82,15 @@ namespace ConsoleApp
                     break;
             }
             return parsedInput;
+        }
+
+        private void PrintCurrentPath()
+        {
+            foreach (string name in _currDirPath)
+            {
+                Console.Write(name);
+            }
+            Console.Write(": $ ");
         }
     }
 }
