@@ -54,5 +54,23 @@ namespace VirtualFileSystem.Tests.DatabaseTests
             }
         }
 
+        [Fact]
+        [Trait("Category", "Files")]
+        public void CanDeleteDirectoryFromDatabase()
+        {
+            using (_context)
+            {
+                var dir = new Directory() { Name = "DeleteDirectory" };
+                _context.Directories.Add(dir);//tracks directory
+                _context.SaveChanges(); //adds to db
+                _context.Directories.Remove(dir);
+                _context.SaveChanges();
+
+                var found = _context.Directories.Where(d => d.Name == "DeleteDirectory" && d.Id == dir.Id).FirstOrDefault();
+
+                Assert.Null(found);
+            }
+        }
+
     }
 }

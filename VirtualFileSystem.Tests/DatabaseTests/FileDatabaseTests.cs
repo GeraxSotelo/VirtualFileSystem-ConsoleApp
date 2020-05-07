@@ -49,5 +49,24 @@ namespace VirtualFileSystem.Tests.DatabaseTests
                 Assert.NotEqual(0, file.Id);
             }
         }
+
+        [Fact]
+        [Trait("Category", "Files")]
+        public void CanDeleteFileFromDatabase()
+        {
+            using (_context)
+            {
+                var file = new File() { Name = "DeleteFile", DirectoryId = 1 };
+                _context.Files.Add(file);//tracks file
+                _context.SaveChanges(); //adds to db
+                _context.Files.Remove(file);
+                _context.SaveChanges();
+
+                var found = _context.Files.Where(f => f.Name == "DeleteFile" && f.Id == file.Id).FirstOrDefault();
+
+                Assert.Null(found);
+            }
+        }
+
     }
 }

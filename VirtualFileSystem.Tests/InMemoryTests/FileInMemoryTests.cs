@@ -42,6 +42,29 @@ namespace VirtualFileSystem.Tests.InMemoryTests
         }
 
         [Fact]
+        public void CanRemoveSingleFile()
+        {
+            builder.UseInMemoryDatabase("RemoveSingleFile");
+
+            using (var context = new FileSystemContext(builder.Options))
+            {
+                var bizlogic = new BusinessDataLogic(context);
+                var file = new File() { Name = "RemoveFile", DirectoryId = 1 };
+                var file1 = new File() { Name = "RemoveFile1", DirectoryId = 1 };
+                var file2 = new File() { Name = "RemoveFile2", DirectoryId = 1 };
+                bizlogic.Touch(file);
+                bizlogic.Touch(file1);
+                bizlogic.Touch(file2);
+                bizlogic.Rm(file1);
+            }
+
+            using (var context2 = new FileSystemContext(builder.Options))
+            {
+                Assert.Equal(2, context2.Files.Count());
+            }
+        }
+
+        [Fact]
         [Trait("Category", "File")]
         public void CanInsertFileIntoDatabase()
         {

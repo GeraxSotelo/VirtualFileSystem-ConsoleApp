@@ -21,19 +21,31 @@ namespace VirtualFileSystem.Tests
             _context = context;
         }
 
-        public int Mkdir(Directory directory)
+        public int MkDir(Directory directory)
         {
             _context.Directories.Add(directory);
-            //returns number of rows affected
-            var dbResult = _context.SaveChanges();
+            var dbResult = _context.SaveChanges();//returns number of rows affected
+            return dbResult;
+        }
+
+        public int RmDir(Directory directory)
+        {
+            _context.Directories.Remove(directory);
+            var dbResult = _context.SaveChanges();//returns number of rows affected
             return dbResult;
         }
 
         public int Touch(File file)
         {
             _context.Files.Add(file);
-            //returns number of rows affected
-            var dbResult = _context.SaveChanges();
+            var dbResult = _context.SaveChanges();//returns # of rows affected
+            return dbResult;
+        }
+
+        public int Rm(File file)
+        {
+            _context.Files.Remove(file);
+            var dbResult = _context.SaveChanges();//returns # of rows affected
             return dbResult;
         }
 

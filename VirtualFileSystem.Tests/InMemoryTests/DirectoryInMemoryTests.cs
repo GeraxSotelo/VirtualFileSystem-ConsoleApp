@@ -30,12 +30,35 @@ namespace VirtualFileSystem.Tests.InMemoryTests
             using (var context = new FileSystemContext(builder.Options))
             {
                 var bizlogic = new BusinessDataLogic(context);
-                bizlogic.Mkdir(new Directory());
+                bizlogic.MkDir(new Directory());
             }
 
             using (var context2 = new FileSystemContext(builder.Options))
             {
                 Assert.Equal(1, context2.Directories.Count());
+            }
+        }
+
+        [Fact]
+        public void CanRemoveSingleDirectory()
+        {
+            builder.UseInMemoryDatabase("RemoveSingleDirectory");
+
+            using (var context = new FileSystemContext(builder.Options))
+            {
+                var bizlogic = new BusinessDataLogic(context);
+                var dir = new Directory() { Name = "RemoveDir" };
+                var dir1 = new Directory() { Name = "RemoveDir1" };
+                var dir2 = new Directory() { Name = "RemoveDir2" };
+                bizlogic.MkDir(dir);
+                bizlogic.MkDir(dir1);
+                bizlogic.MkDir(dir2);
+                bizlogic.RmDir(dir1);
+            }
+
+            using (var context2 = new FileSystemContext(builder.Options))
+            {
+                Assert.Equal(2, context2.Directories.Count());
             }
         }
 
