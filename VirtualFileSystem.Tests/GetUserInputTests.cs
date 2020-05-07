@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 using ConsoleApp;
 using VirtualFileSystem.Data;
 using VirtualFileSystem.Domain;
@@ -21,9 +18,8 @@ namespace VirtualFileSystem.Tests
         }
 
         [Theory]
-        [InlineData("MkDiR ", "mkdir")]
-        [InlineData("haha ", "--Invalid Command--")]
-        [InlineData(" ", "--Invalid Command--")]
+        [InlineData("haha ", "---Invalid Command---")]
+        [InlineData(" ", "---Invalid Command---")]
         public void ValidUserInput(string userInput, string expected)
         {
             UserInput actual = _pe.AnalyzeInput(userInput);

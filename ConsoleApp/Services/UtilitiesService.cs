@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using VirtualFileSystem.Domain;
 
 namespace ConsoleApp.Services
@@ -28,11 +26,11 @@ namespace ConsoleApp.Services
             Messages.Add("");
             foreach (var dir in dirs)
             {
-                Messages.Add("  "+dir.Name);
+                Messages.Add("   "+dir.Name);
             }
             foreach(var file in files)
             {
-                Messages.Add("  "+file.Name);
+                Messages.Add("   "+file.Name);
             }
             return Messages;
         }
